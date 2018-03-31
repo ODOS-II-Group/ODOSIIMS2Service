@@ -49,7 +49,6 @@ def liquibaseCommand(command) {
         args "--url=jdbc:postgresql://localhost:5432/ODOSIIMS2Service"
         args "--driver=org.postgresql.Driver"
         args command
-        args "--excludeObjects=oauth_access_token, oauth_approvals, oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token"
     }
 }
 

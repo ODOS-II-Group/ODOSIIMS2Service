@@ -40,7 +40,6 @@ public class CacheConfiguration {
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
-            cm.createCache("oAuth2Authentication", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

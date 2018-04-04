@@ -42,11 +42,12 @@ def liquibaseCommand(command) {
         }
         main = "liquibase.integration.commandline.Main"
 
-        args "--changeLogFile=src/main/resources/config/liquibase/changelog/" + buildTimestamp() +"_changelog.xml"
+        args "--changeLogFile=src/main/resources/config/liquibase/changelog.xml"
         args "--referenceUrl=hibernate:spring:gov.dhs.uscis.odos.domain?dialect=org.hibernate.dialect.PostgreSQL82Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
-        args "--username=ODOSIIMS2Service"
-        args "--password="
-        args "--url=jdbc:postgresql://localhost:5432/ODOSIIMS2Service"
+        args "--username=${databaseAdminUser}"
+        args "--password=${databaseAdminPassword}"
+        args "--defaultSchemaName=${databaseSchema}"
+        args "--url=jdbc:postgresql://${databaseHost}:${databasePort}/${databaseName}"
         args "--driver=org.postgresql.Driver"
         args command
     }
@@ -61,6 +62,12 @@ task liquibaseDiffChangeLog(dependsOn: initPaths) {
 task liquibaseClearChecksums(dependsOn: initPaths) {
     doLast {
         liquibaseCommand("clearChecksums")
+    }
+}
+
+task liquibaseUpdate(dependsOn: initPaths) {
+    doLast {
+        liquibaseCommand("update")
     }
 }
 

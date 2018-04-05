@@ -1,11 +1,49 @@
 import org.gradle.internal.os.OperatingSystem
 
+import org.apache.tools.ant.taskdefs.condition.Os;
+
 configurations {
     liquibase
 }
 
 dependencies {
     liquibase "org.liquibase.ext:liquibase-hibernate5:${liquibase_hibernate5_version}"
+}
+
+if (OperatingSystem.current().isWindows()) {
+	ext.psql = "C:/PostgreSQL/10/bin/psql.exe"
+} else {
+	if (System.getenv('PSQL_BIN') == null) {
+		ext.psql = "/usr/bin/psql"
+	} else {
+		ext.psql = System.getenv('PSQL_BIN')
+	}
+}
+
+def runpsql(String sqlFile, String dbConnection) {
+    println "Running " + sqlFile
+    exec {
+        ignoreExitValue true
+        environment 'PGPASSWORD', "${databaseAdminPassword}"
+        executable psql
+        args '-h', "${databaseHost}",
+            '-p', "${databasePort}",
+            '-U', "${databaseAdminUser}",
+            '-d', "${dbConnection}",
+            '-f', "${sqlFile}",
+            '-v', "databaseName=${databaseName}",
+            '-v', "databaseAdminUser=${databaseAdminUser}",
+            '-v', "databaseSchema=${databaseSchema}",
+            '-v', "databaseAppRole=${databaseAppRole}",
+            '-v', "databaseAppPassword='${databaseAppPassword}'"
+    }
+}
+
+task baseline << {
+    runpsql('src/main/resources/config/liquibase/baseline/drop_schema.sql', "${databaseName}")
+    runpsql('src/main/resources/config/liquibase/baseline/drop_user.sql', "${databaseName}")
+    runpsql('src/main/resources/config/liquibase/baseline/create_user.sql', "${databaseName}")
+    runpsql('src/main/resources/config/liquibase/baseline/create_schema.sql', "${databaseName}")
 }
 
 if (OperatingSystem.current().isWindows()) {

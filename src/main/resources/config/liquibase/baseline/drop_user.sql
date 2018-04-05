@@ -1,2 +1,3 @@
-DROP USER IF EXISTS :databaseAppUser;
-DROP USER IF EXISTS :databaseAppRole;
+revoke all on database :databaseName from :databaseAppRole;
+
+DROP ROLE IF EXISTS :databaseAppRole;

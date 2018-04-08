@@ -7,5 +7,14 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="2018-04-03-ranga-01" author="ranga">
+    	<comment>Create a table to store employee data</comment>
+    	<createTable tableName="EMPLOYEE">
+    		<column name="EMP_ID" type="int">
+    			<constraints primaryKey="true" primaryKeyName="EMPLOYEE_PK"/>
+    		</column>
+    		<column name="FIRST_NAME" type="VARCHAR(50)"/>
+    		<column name="LAST_NAME" type="VARCHAR(50)"/>
+    		<column name="DOB" type="DATE"/>
+    	</createTable>
     </changeSet>
 </databaseChangeLog>

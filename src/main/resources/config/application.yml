@@ -117,7 +117,7 @@ jhipster:
     mail:
         from: ODOSIIMS2Service@localhost
     swagger:
-        default-include-pattern: /api/.*
+        default-include-pattern: /.*
         title: ODOSIIMS2Service API
         description: ODOSIIMS2Service API documentation
         version: 0.0.1

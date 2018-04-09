@@ -17,6 +17,16 @@ public class EmployeeDTO implements Serializable {
     private String lastName;
     private String dateOfBirth;
 
+	public EmployeeDTO(int id, String firstName, String lastName, String dateOfBirth) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+	}
+	
+	public EmployeeDTO() {}
+
 	public int getId() {
 		return id;
 	}

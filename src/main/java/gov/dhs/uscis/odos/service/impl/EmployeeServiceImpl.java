@@ -50,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		emp.setFirstName(empDTO.getFirstName().toUpperCase());
 		emp.setLastName(empDTO.getLastName().toUpperCase());
 		try {
-			emp.setDateOfBirth(DateUtils.parseDate(empDTO.getDateOfBirth(), "MM/DD/YYYY"));
+			emp.setDateOfBirth(DateUtils.parseDate(empDTO.getDateOfBirth(), "MM/dd/yyyy"));
 		} catch (ParseException e) {
 			throw new RuntimeException("Date of Birth cannot be parsed into a date. Please ensure it is in MM/DD/YYYY format.");
 		}
@@ -64,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		dto.setFirstName(emp.getFirstName());
 		dto.setLastName(emp.getLastName());
 		if (emp.getDateOfBirth() != null) {
-			dto.setDateOfBirth(DateFormatUtils.format(emp.getDateOfBirth(), "MM/DD/YYYY"));
+			dto.setDateOfBirth(DateFormatUtils.format(emp.getDateOfBirth(), "MM/dd/yyyy"));
 		}
 		return dto;
 	}

@@ -32,6 +32,16 @@ public class Employee implements Serializable {
     @Column(name = "dob")
     private Date dateOfBirth;
 
+	public Employee(int id, String firstName, String lastName, Date dateOfBirth) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Employee() {}
+	
 	public int getId() {
 		return id;
 	}

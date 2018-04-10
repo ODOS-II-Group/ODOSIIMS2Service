@@ -27,5 +27,8 @@ processResources {
             it.replace('#spring.profiles.active#', profiles)
         }
     }
+    filesMatching("**/application.properties") {
+        expand( project.properties )
+    }
 }
 

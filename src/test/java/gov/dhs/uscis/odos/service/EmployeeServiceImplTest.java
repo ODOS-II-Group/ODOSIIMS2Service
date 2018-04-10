@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.context.ActiveProfiles;
 
 import gov.dhs.uscis.odos.domain.Employee;
 import gov.dhs.uscis.odos.dto.EmployeeDTO;
@@ -24,6 +25,7 @@ import gov.dhs.uscis.odos.repository.EmployeeRepository;
 import gov.dhs.uscis.odos.service.impl.EmployeeServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
+@ActiveProfiles("no-liquibase")
 public class EmployeeServiceImplTest {
 
 	@InjectMocks

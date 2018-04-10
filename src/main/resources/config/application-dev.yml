@@ -39,9 +39,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/postgres
-        username: odos
-        password: 0d0sP455
+        url: jdbc:postgresql://localhost:5432/odos_local
+        username: odos_svc2
+        password: 0d0s_svc2
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

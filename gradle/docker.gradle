@@ -25,6 +25,5 @@ task buildDocker(type: DockerBuildImage, dependsOn: 'copyDockerFiles') {
     description = "Package application as Docker image"
     group = "Docker"
     inputDir = project.file("${project.buildDir}/docker")
-    tags = ["odosiims2service:latest".toString(), "odosiims2service:${project.version}".toString()]
+    tags = ["docker.lassiterdynamics.com:5000/odosiisvc2:latest".toString(), "docker.lassiterdynamics.com:5000/odosiisvc2:${project.version}".toString()]
 }
-

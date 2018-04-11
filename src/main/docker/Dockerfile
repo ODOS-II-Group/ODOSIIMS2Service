@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM docker.lassiterdynamics.com:5000/centos7-java8
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JHIPSTER_SLEEP=0 \

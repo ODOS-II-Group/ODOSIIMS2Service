@@ -35,7 +35,7 @@ pipeline {
             steps {
               script{
                 Common.slack 'Fortify Scan...'
-                Common.fortify('src','reports', 3)
+                Common.fortify('src','reports')
               }
             }
         }
